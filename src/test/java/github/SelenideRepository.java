@@ -13,13 +13,6 @@ import static com.codeborne.selenide.Selenide.*;
 //import static com.codeborne.selenide.Selenide.open;
 
 public class SelenideRepository {
-
-    @BeforeAll
-    static void configure() {
-        Configuration.holdBrowserOpen = true;
-    }
-
-
     @Test
     void findSelenideInGithub() {
         open("https://github.com/");
