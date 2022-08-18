@@ -7,13 +7,15 @@ import org.junit.jupiter.api.Test;
 
 //import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 //import static com.codeborne.selenide.Selenide.open;
 
 public class SelenideRepository {
 
     @BeforeAll
-    static void configure(){
+    static void configure() {
         Configuration.holdBrowserOpen = true;
     }
 
@@ -24,8 +26,10 @@ public class SelenideRepository {
         $("[data-test-selector=nav-search-input]").setValue("selenide").pressEnter();
         $$("ul.repo-list li").first().$("a").click();
         $("#repository-container-header").shouldHave(text("selenide / selenide"));
-        //$$("ul.UnderlineNav-body li").first().$("a").click();
+        $(".js-repo-nav").$("#wiki-tab").click();
+        $("#wiki-pages-filter").setValue("SoftAssertions").pressEnter();
+        $(byLinkText("Soft assertions")).click();
+        $(".markdown-body").shouldHave(text("Using JUnit5 extend test class"));
 
     }
-
 }
